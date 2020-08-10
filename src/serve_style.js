@@ -34,7 +34,7 @@ const getQuery = (req, opt_nokey) => {
   }
 
   return query;
-}
+};
 
 module.exports = {
   init: (options, repo) => {
