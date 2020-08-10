@@ -36,6 +36,21 @@ const getQuery = (req, opt_nokey) => {
   return query;
 }
 
+// Return the query suffix from the original request
+const getQuery = (req, opt_nokey) => {
+  const queryParams = [];
+  if (!opt_nokey && req.query.key) {
+    queryParams.unshift(`key=${encodeURIComponent(req.query.key)}`);
+  }
+
+  let query = '';
+  if (queryParams.length) {
+    query = `?${queryParams.join('&')}`;
+  }
+
+  return query;
+}
+
 module.exports = {
   init: (options, repo) => {
     const app = express().disable('x-powered-by');
